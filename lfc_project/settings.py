@@ -28,7 +28,7 @@ TIME_ZONE = 'Europe/Berlin'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'de'
+LANGUAGE_CODE = 'en'
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -120,7 +120,7 @@ EMAIL_HOST_PASSWORD = ""
 PAGINATION_DEFAULT_PAGINATION = 5
 PAGINATION_DEFAULT_WINDOW = 1
 
-LANGUAGES = (("de", "Deutsch"), ("en", "Englisch"),)
+LANGUAGES = (("de", "German"), ("en", "English"),)
 LFC_MULTILANGUAGE = len(LANGUAGES) > 1
 LFC_TRAVERSING = True
 
