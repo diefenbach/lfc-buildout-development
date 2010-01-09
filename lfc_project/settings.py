@@ -64,8 +64,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.common.CommonMiddleware',
-    "lfc.utils.middleware.AJAXSimpleExceptionResponse",
     "pagination.middleware.PaginationMiddleware",
+    "lfc.utils.middleware.AJAXSimpleExceptionResponse",
+    "lfc.utils.middleware.MultiLanguageMiddleware",
 )
 
 ROOT_URLCONF = 'urls'
