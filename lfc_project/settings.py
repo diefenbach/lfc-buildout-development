@@ -109,9 +109,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'lfc.context_processors.main',
 )
 
-CACHE_MIDDLEWARE_KEY_PREFIX = ''
-CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
-
 DEFAULT_FROM_EMAIL = ""
 EMAIL_HOST = ""
 EMAIL_HOST_USER = ""
