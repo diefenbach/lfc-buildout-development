@@ -29,7 +29,7 @@ urlpatterns += patterns('contact_form.views',
 
 # LFC Blog
 urlpatterns += patterns("",
-    (r'^blog/', include('lfc_blog.urls')),
+    (r'', include('lfc_blog.urls')),
 )
 
 # LFC
