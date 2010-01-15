@@ -1,4 +1,5 @@
 # Django settings for lfc buildout.
+from django.utils.translation import ugettext_lazy as _
 
 import os
 DIRNAME = os.path.dirname(__file__)
@@ -65,7 +66,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.common.CommonMiddleware',
     "pagination.middleware.PaginationMiddleware",
-    "lfc.utils.middleware.AJAXSimpleExceptionResponse",
+    "lfc.utils.middleware.AJAXSimpleExceptionResponse",    
     "lfc.utils.middleware.LFCMiddleware",
 )
 
@@ -118,7 +119,9 @@ EMAIL_HOST_PASSWORD = ""
 PAGINATION_DEFAULT_PAGINATION = 5
 PAGINATION_DEFAULT_WINDOW = 1
 
-LANGUAGES = (("de", "German"), ("en", "English"),)
+LANGUAGES = (("en", _(u"English")), ("de", _(u"German")),)
+LFC_LANGUAGE_IDS = [l[0] for l in LANGUAGES]
+
 LFC_MULTILANGUAGE = len(LANGUAGES) > 1
 LFC_TRAVERSING = True
 
