@@ -97,6 +97,8 @@ INSTALLED_APPS = (
 
 )
 
+CACHE_BACKEND = 'dummy:///'
+
 FORCE_SCRIPT_NAME=""
 LOGIN_URL = '/accounts/login/'
 LOGOUT_URL = '/accounts/logout/'
@@ -110,6 +112,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'lfc.context_processors.main',
 )
+
 
 DEFAULT_FROM_EMAIL = ""
 EMAIL_HOST = ""
