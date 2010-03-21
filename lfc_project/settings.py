@@ -62,12 +62,17 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "django.middleware.csrf.CsrfResponseMiddleware",
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.common.CommonMiddleware',
     "pagination.middleware.PaginationMiddleware",
     "lfc.utils.middleware.AJAXSimpleExceptionResponse",    
-    "lfc.utils.middleware.LFCMiddleware",
+    "lfc.utils.middleware.LFCMiddleware",    
+)
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'urls'
@@ -88,13 +93,15 @@ INSTALLED_APPS = (
     "django.contrib.flatpages",
     "django.contrib.sitemaps",
     "django.contrib.comments",
+    "django_extensions",
     "lfc",
     "lfc_blog",
     "portlets",
     "tagging",
     "contact_form",
     "pagination",
-
+    "permissions",
+    "workflows",
 )
 
 CACHE_BACKEND = 'dummy:///'
