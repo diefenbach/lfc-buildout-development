@@ -88,13 +88,15 @@ INSTALLED_APPS = (
     "django.contrib.flatpages",
     "django.contrib.sitemaps",
     "django.contrib.comments",
+    "django_extensions",
     "lfc",
     "lfc_blog",
     "portlets",
     "tagging",
     "contact_form",
     "pagination",
-
+    "workflows",
+    "permissions",
 )
 
 CACHE_BACKEND = 'dummy:///'
