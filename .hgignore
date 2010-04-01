@@ -14,3 +14,5 @@ lfs.db
 local_settings.py
 restart.sh
 server.pid
+*django_coverage*
+.coverage
