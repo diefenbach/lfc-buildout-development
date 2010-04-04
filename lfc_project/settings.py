@@ -97,8 +97,6 @@ INSTALLED_APPS = (
     "pagination",
     "workflows",
     "permissions",
-    "django_extensions",
-    "django_coverage",
 )
 
 CACHE_BACKEND = 'dummy:///'
