@@ -38,7 +38,6 @@ def load_data():
 
     # Register roles
     anonymous     = permissions.utils.register_role("Anonymous")
-    authenticated = permissions.utils.register_role("Authenticated")
     owner         = permissions.utils.register_role("Owner")
     editor        = permissions.utils.register_role("Editor")
     reader        = permissions.utils.register_role("Reader")
