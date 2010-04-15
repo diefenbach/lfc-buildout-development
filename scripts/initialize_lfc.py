@@ -12,6 +12,7 @@ from django.contrib.webdesign.lorem_ipsum import paragraph, sentence, words
 # lfc imports
 from lfc.models import Portal
 from lfc.models import Page
+from lfc.models import WorkflowStatesInformation
 
 # portlets import
 from portlets.models import Slot
@@ -49,7 +50,6 @@ def load_data():
     delete = permissions.utils.register_permission("Delete", "delete")
     edit   = permissions.utils.register_permission("Edit", "edit")
     view   = permissions.utils.register_permission("View", "view")
-    submit = permissions.utils.register_permission("Submit", "submit")
 
     ctype = ContentType.objects.get_for_model(Portal)
     manage_portal = permissions.utils.register_permission("Manage Portal", "manage_portal", [ctype])
@@ -59,18 +59,26 @@ def load_data():
     right_slot, created = Slot.objects.get_or_create(name="Right")
 
     # Set permissions for portal
+    permissions.utils.grant_permission(portal, anonymous, "view")
+
+    permissions.utils.grant_permission(portal, editor, "add", )
+    permissions.utils.grant_permission(portal, editor, "delete")
+    permissions.utils.grant_permission(portal, editor, "view")
+    permissions.utils.grant_permission(portal, editor, "edit")
+
     permissions.utils.grant_permission(portal, manager, "add", )
     permissions.utils.grant_permission(portal, manager, "delete")
     permissions.utils.grant_permission(portal, manager, "edit")
     permissions.utils.grant_permission(portal, manager, "manage_portal")
-    permissions.utils.grant_permission(portal, manager, "submit")
     permissions.utils.grant_permission(portal, manager, "view")
 
-    permissions.utils.grant_permission(portal, anonymous, "view")
-    permissions.utils.grant_permission(portal, reader, "view")
-
+    permissions.utils.grant_permission(portal, owner, "add")
+    permissions.utils.grant_permission(portal, owner, "delete")
+    permissions.utils.grant_permission(portal, owner, "edit")
     permissions.utils.grant_permission(portal, owner, "view")
-    permissions.utils.grant_permission(portal, owner, "submit")
+
+    permissions.utils.grant_permission(portal, reader, "view")
+    permissions.utils.grant_permission(portal, reviewer, "view")
 
     # Simple Workflow
     ##########################################################################
@@ -97,6 +105,8 @@ def load_data():
     WorkflowPermissionRelation.objects.create(workflow=workflow, permission=view)
 
     # Add permissions for single states
+
+    # Private
     StatePermissionRelation.objects.create(state=private, permission=add, role=owner)
     StatePermissionRelation.objects.create(state=private, permission=delete, role=owner)
     StatePermissionRelation.objects.create(state=private, permission=edit, role=owner)
@@ -107,6 +117,25 @@ def load_data():
     StatePermissionRelation.objects.create(state=private, permission=edit, role=manager)
     StatePermissionRelation.objects.create(state=private, permission=view, role=manager)
 
+    # Public
+    StatePermissionRelation.objects.create(state=public, permission=view, role=anonymous)
+
+    StatePermissionRelation.objects.create(state=public, permission=view, role=editor)
+
+    StatePermissionRelation.objects.create(state=public, permission=view, role=reader)
+
+    StatePermissionRelation.objects.create(state=public, permission=view, role=reviewer)
+
+    StatePermissionRelation.objects.create(state=public, permission=add, role=owner)
+    StatePermissionRelation.objects.create(state=public, permission=delete, role=owner)
+    StatePermissionRelation.objects.create(state=public, permission=edit, role=owner)
+    StatePermissionRelation.objects.create(state=public, permission=view, role=owner)
+
+    StatePermissionRelation.objects.create(state=public, permission=add, role=manager)
+    StatePermissionRelation.objects.create(state=public, permission=delete, role=manager)
+    StatePermissionRelation.objects.create(state=public, permission=edit, role=manager)
+    StatePermissionRelation.objects.create(state=public, permission=view, role=manager)
+
     # Add inheritance block for single states
     StateInheritanceBlock.objects.create(state=private, permission=add)
     StateInheritanceBlock.objects.create(state=private, permission=delete)
@@ -116,6 +145,10 @@ def load_data():
     StateInheritanceBlock.objects.create(state=public, permission=add)
     StateInheritanceBlock.objects.create(state=public, permission=delete)
     StateInheritanceBlock.objects.create(state=public, permission=edit)
+    StateInheritanceBlock.objects.create(state=public, permission=view)
+
+    # Define public state
+    WorkflowStatesInformation.objects.create(state=public, public=True)
 
     # Define initial state
     workflow.initial_state = private
@@ -149,7 +182,6 @@ def load_data():
     WorkflowPermissionRelation.objects.create(workflow=portal_workflow, permission=delete)
     WorkflowPermissionRelation.objects.create(workflow=portal_workflow, permission=edit)
     WorkflowPermissionRelation.objects.create(workflow=portal_workflow, permission=view)
-    WorkflowPermissionRelation.objects.create(workflow=portal_workflow, permission=submit)
 
     # Add permissions for single states
 
@@ -158,19 +190,16 @@ def load_data():
     StatePermissionRelation.objects.create(state=private, permission=delete, role=owner)
     StatePermissionRelation.objects.create(state=private, permission=edit, role=owner)
     StatePermissionRelation.objects.create(state=private, permission=view, role=owner)
-    StatePermissionRelation.objects.create(state=private, permission=submit, role=owner)
 
     StatePermissionRelation.objects.create(state=private, permission=add, role=manager)
     StatePermissionRelation.objects.create(state=private, permission=delete, role=manager)
     StatePermissionRelation.objects.create(state=private, permission=edit, role=manager)
     StatePermissionRelation.objects.create(state=private, permission=view, role=manager)
-    StatePermissionRelation.objects.create(state=private, permission=submit, role=manager)
 
     StateInheritanceBlock.objects.create(state=private, permission=add)
     StateInheritanceBlock.objects.create(state=private, permission=delete)
     StateInheritanceBlock.objects.create(state=private, permission=edit)
     StateInheritanceBlock.objects.create(state=private, permission=view)
-    StateInheritanceBlock.objects.create(state=private, permission=submit)
 
     # Submitted
     StatePermissionRelation.objects.create(state=submitted, permission=view, role=owner)
@@ -179,33 +208,34 @@ def load_data():
     StatePermissionRelation.objects.create(state=submitted, permission=delete, role=manager)
     StatePermissionRelation.objects.create(state=submitted, permission=edit,   role=manager)
     StatePermissionRelation.objects.create(state=submitted, permission=view,   role=manager)
-    StatePermissionRelation.objects.create(state=submitted, permission=submit, role=manager)
 
     StatePermissionRelation.objects.create(state=submitted, permission=add,    role=reviewer)
     StatePermissionRelation.objects.create(state=submitted, permission=delete, role=reviewer)
     StatePermissionRelation.objects.create(state=submitted, permission=edit,   role=reviewer)
     StatePermissionRelation.objects.create(state=submitted, permission=view,   role=reviewer)
-    StatePermissionRelation.objects.create(state=submitted, permission=submit, role=reviewer)
 
     StateInheritanceBlock.objects.create(state=submitted, permission=add)
     StateInheritanceBlock.objects.create(state=submitted, permission=delete)
     StateInheritanceBlock.objects.create(state=submitted, permission=edit)
     StateInheritanceBlock.objects.create(state=submitted, permission=view)
-    StateInheritanceBlock.objects.create(state=submitted, permission=submit)
 
     # Public
     StatePermissionRelation.objects.create(state=public, permission=add,    role=manager)
     StatePermissionRelation.objects.create(state=public, permission=delete, role=manager)
     StatePermissionRelation.objects.create(state=public, permission=edit,   role=manager)
     StatePermissionRelation.objects.create(state=public, permission=view,   role=manager)
-    StatePermissionRelation.objects.create(state=public, permission=submit, role=manager)
 
     StatePermissionRelation.objects.create(state=public, permission=view, role=reader)
 
     StateInheritanceBlock.objects.create(state=public, permission=add)
     StateInheritanceBlock.objects.create(state=public, permission=delete)
     StateInheritanceBlock.objects.create(state=public, permission=edit)
-    StateInheritanceBlock.objects.create(state=public, permission=submit)
+
+    # Define public state
+    WorkflowStatesInformation.objects.create(state=public, public=True)
+
+    # Define review state
+    WorkflowStatesInformation.objects.create(state=submitted, review=True)
 
     # Define initial state
     portal_workflow.initial_state = private
