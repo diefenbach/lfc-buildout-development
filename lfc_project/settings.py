@@ -68,6 +68,7 @@ MIDDLEWARE_CLASSES = (
     "pagination.middleware.PaginationMiddleware",
     "lfc.utils.middleware.AJAXSimpleExceptionResponse",    
     "lfc.utils.middleware.LFCMiddleware",
+    "lfc.utils.middleware.ProfileMiddleware",
 )
 
 ROOT_URLCONF = 'urls'
@@ -97,6 +98,8 @@ INSTALLED_APPS = (
     "pagination",
     "workflows",
     "permissions",
+    "django_extensions",
+    "django_coverage",
 )
 
 CACHE_BACKEND = 'dummy:///'
