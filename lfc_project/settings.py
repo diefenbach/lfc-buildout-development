@@ -126,9 +126,11 @@ PAGINATION_DEFAULT_WINDOW = 1
 
 LANGUAGES = (("en", _(u"English")), ("de", _(u"German")),)
 LFC_LANGUAGE_IDS = [l[0] for l in LANGUAGES]
-
 LFC_MULTILANGUAGE = len(LANGUAGES) > 1
-LFC_TRAVERSING = True
+LFC_MANAGE_WORKFLOWS = True
+LFC_MANAGE_PERMISSIONS = True
+LFC_MANAGE_APPLICATIONS = True
+LFC_MANAGE_USERS = True
 
 try:
     from local_settings import *
