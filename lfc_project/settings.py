@@ -125,7 +125,14 @@ PAGINATION_DEFAULT_PAGINATION = 5
 PAGINATION_DEFAULT_WINDOW = 1
 
 LANGUAGES = (("en", _(u"English")), ("de", _(u"German")),)
+LANGUAGES_DICT = []
+for language in LANGUAGES:
+    LANGUAGES_DICT.append({
+        "code" : language[0],
+        "name" : language[1],
+    })
 LFC_LANGUAGE_IDS = [l[0] for l in LANGUAGES]
+
 LFC_MULTILANGUAGE = len(LANGUAGES) > 1
 LFC_MANAGE_WORKFLOWS = True
 LFC_MANAGE_PERMISSIONS = True
