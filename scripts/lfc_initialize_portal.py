@@ -1,13 +1,6 @@
-# python imports
-import os
-
 # django imports
-from django.conf import settings
 from django.contrib.sites.models import Site
-from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
-from django.template.defaultfilters import slugify
-from django.contrib.webdesign.lorem_ipsum import paragraph, sentence, words
 
 # lfc imports
 from lfc.models import Portal
@@ -29,9 +22,13 @@ from workflows.models import WorkflowPermissionRelation
 # permissions imports
 import permissions.utils
 
+# scripts imports
+from utils import register
+
 def load_data():
-    from utils import register
+    # Registers default portlets, templates and content types.
     register()
+    
     site = Site.objects.all()[0]
     site.name = site.domain = "www.example.com"
     site.save()
