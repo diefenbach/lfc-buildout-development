@@ -30,7 +30,8 @@ from workflows.models import WorkflowPermissionRelation
 import permissions.utils
 
 def load_data():
-
+    from utils import register
+    register()
     site = Site.objects.all()[0]
     site.name = site.domain = "www.example.com"
     site.save()
