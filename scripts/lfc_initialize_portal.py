@@ -23,16 +23,24 @@ from workflows.models import WorkflowPermissionRelation
 import permissions.utils
 
 # scripts imports
-from utils import register
+from lfc.utils.initialize import initialize
 
 def load_data():
-    # Registers default portlets, templates and content types.
-    register()
+    """This will create default portlets, templates and content types, simple
+    Roles and two workflows at first the portal workflow which is adequate for 
+    portals with different roles, like editor, reviewer, manager, etc.
     
+    This can be used for portals.
+    """
+    # Register default portlets, templates and content types.
+    initialize()
+    
+    # Register site
     site = Site.objects.all()[0]
     site.name = site.domain = "www.example.com"
     site.save()
-
+    
+    # Create portal
     portal = Portal.objects.create()
 
     # Register roles
