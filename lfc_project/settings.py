@@ -68,6 +68,7 @@ MIDDLEWARE_CLASSES = (
     "pagination.middleware.PaginationMiddleware",
     "lfc.utils.middleware.AJAXSimpleExceptionResponse",    
     "lfc.utils.middleware.LFCMiddleware",
+    "lfc.utils.middleware.ProfileMiddleware",
 )
 
 ROOT_URLCONF = 'urls'
@@ -102,8 +103,8 @@ INSTALLED_APPS = (
 CACHE_BACKEND = 'dummy:///'
 
 FORCE_SCRIPT_NAME=""
-LOGIN_URL = '/accounts/login/'
-LOGOUT_URL = '/accounts/logout/'
+LOGIN_URL = '/login'
+LOGOUT_URL = '/logout'
 LOGIN_REDIRECT_URL = '/'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -125,14 +126,6 @@ PAGINATION_DEFAULT_PAGINATION = 5
 PAGINATION_DEFAULT_WINDOW = 1
 
 LANGUAGES = (("en", _(u"English")), ("de", _(u"German")),)
-LANGUAGES_DICT = []
-for language in LANGUAGES:
-    LANGUAGES_DICT.append({
-        "code" : language[0],
-        "name" : language[1],
-    })
-LFC_LANGUAGE_IDS = [l[0] for l in LANGUAGES]
-
 LFC_MULTILANGUAGE = len(LANGUAGES) > 1
 LFC_MANAGE_WORKFLOWS = True
 LFC_MANAGE_PERMISSIONS = True
