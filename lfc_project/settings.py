@@ -1,6 +1,3 @@
-# Django settings for lfc buildout.
-from django.utils.translation import ugettext_lazy as _
-
 import os
 DIRNAME = os.path.dirname(__file__)
 
@@ -125,12 +122,17 @@ EMAIL_HOST_PASSWORD = ""
 PAGINATION_DEFAULT_PAGINATION = 5
 PAGINATION_DEFAULT_WINDOW = 1
 
-LANGUAGES = (("en", _(u"English")), ("de", _(u"German")),)
+LANGUAGES = (("en", u"English"), ("de", u"German"),)
 LFC_MULTILANGUAGE = len(LANGUAGES) > 1
 LFC_MANAGE_WORKFLOWS = True
 LFC_MANAGE_PERMISSIONS = True
 LFC_MANAGE_APPLICATIONS = True
 LFC_MANAGE_USERS = True
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
 
 try:
     from local_settings import *
