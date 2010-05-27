@@ -98,6 +98,7 @@ INSTALLED_APPS = (
     "pagination",
     "workflows",
     "permissions",
+    "gunicorn",
 )
 
 CACHE_BACKEND = 'dummy:///'
