@@ -10,7 +10,7 @@ from django.views.generic.simple import direct_to_template
 admin.autodiscover()
 DIRNAME = os.path.dirname(__file__)
 
-# handler500 = 'lfc.views.server_error'
+handler500 = 'lfc.views.fiveohoh'
 
 # Django 
 urlpatterns = patterns('',
