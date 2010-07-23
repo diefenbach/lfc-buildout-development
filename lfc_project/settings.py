@@ -68,6 +68,8 @@ MIDDLEWARE_CLASSES = (
     "lfc.utils.middleware.ProfileMiddleware",
 )
 
+CACHE_MIDDLEWARE_KEY_PREFIX = "lfc"
+
 ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (

@@ -1,5 +1,5 @@
 syntax: glob
-lfc.db
+lfc.db.start
 .installed.cfg
 *.pyc
 *.pyo
