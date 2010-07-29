@@ -1,11 +1,11 @@
 # Django settings for lfc buildout.
-from django.utils.translation import ugettext_lazy as _
 
 import os
 DIRNAME = os.path.dirname(__file__)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+RESOURCES_DEBUG = DEBUG
 
 ADMINS = (
     # ('name', 'email'),
@@ -69,6 +69,7 @@ MIDDLEWARE_CLASSES = (
     "lfc.utils.middleware.AJAXSimpleExceptionResponse",    
     "lfc.utils.middleware.LFCMiddleware",
     "lfc.utils.middleware.ProfileMiddleware",
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -98,8 +99,15 @@ INSTALLED_APPS = (
     "pagination",
     "workflows",
     "permissions",
+    "resources",
 )
 
+# For sql_queries
+INTERNAL_IPS = (
+    "127.0.0.1",
+)
+
+CACHE_MIDDLEWARE_KEY_PREFIX = "lfc"
 CACHE_BACKEND = 'dummy:///'
 
 FORCE_SCRIPT_NAME=""
@@ -125,7 +133,7 @@ EMAIL_HOST_PASSWORD = ""
 PAGINATION_DEFAULT_PAGINATION = 5
 PAGINATION_DEFAULT_WINDOW = 1
 
-LANGUAGES = (("en", _(u"English")), ("de", _(u"German")),)
+LANGUAGES = (("en", u"English"), ("de", u"German",))
 LFC_MULTILANGUAGE = len(LANGUAGES) > 1
 LFC_MANAGE_WORKFLOWS = True
 LFC_MANAGE_PERMISSIONS = True
