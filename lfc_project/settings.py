@@ -100,6 +100,7 @@ INSTALLED_APPS = (
     "workflows",
     "permissions",
     "resources",
+    "gunicorn",
 )
 
 # For sql_queries
