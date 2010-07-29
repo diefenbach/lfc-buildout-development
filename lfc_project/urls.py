@@ -10,7 +10,7 @@ from django.views.generic.simple import direct_to_template
 admin.autodiscover()
 DIRNAME = os.path.dirname(__file__)
 
-# handler500 = 'lfc.views.server_error'
+handler500 = 'lfc.views.fiveohoh'
 
 # Django 
 urlpatterns = patterns('',
@@ -19,12 +19,6 @@ urlpatterns = patterns('',
 
     (r'^admin/(.*)', admin.site.root),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': os.path.join(DIRNAME, "media"), 'show_indexes': True }),
-)
-
-# Contact Form
-urlpatterns += patterns('contact_form.views',
-   url(r'^contact$', "contact_form", { 'success_url': 'contact-thank-you' }, name='contact_form'),
-   url(r'^contact-thank-you$', direct_to_template, { 'template': 'contact_form/contact_form_sent.html' }, name='contact_form_sent'),
 )
 
 # LFC Blog
