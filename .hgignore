@@ -16,3 +16,4 @@ restart.sh
 server.pid
 *django_coverage*
 .coverage
+*.DS_Store
