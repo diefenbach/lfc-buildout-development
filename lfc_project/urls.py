@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url('^accounts/logout/?$', logout, name='auth_logout'),
 
     (r'^admin/(.*)', admin.site.root),
+    (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', {'packages': ('django.conf') }),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': os.path.join(DIRNAME, "media"), 'show_indexes': True }),
 )
 
