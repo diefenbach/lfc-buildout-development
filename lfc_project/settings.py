@@ -66,10 +66,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.common.CommonMiddleware',
     "pagination.middleware.PaginationMiddleware",
-    "lfc.utils.middleware.AJAXSimpleExceptionResponse",    
     "lfc.utils.middleware.LFCMiddleware",
-    "lfc.utils.middleware.ProfileMiddleware",
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+    "lfc_developement_tools.middleware.AJAXSimpleExceptionResponse",
+    "lfc_developement_tools.middleware.ProfileMiddleware",
 )
 
 ROOT_URLCONF = 'urls'
