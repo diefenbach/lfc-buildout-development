@@ -28,6 +28,7 @@ urlpatterns += patterns("",
 
 # LFC
 urlpatterns += patterns('',
+    (r'^manage', include('lfc.manage.urls')),
     (r'^manage/', include('lfc.manage.urls')),
     (r'', include('lfc.urls')),
 )
