@@ -132,6 +132,42 @@ EMAIL_HOST = ""
 EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+         "verbose": {
+            "format": "%(asctime)s %(levelname)s %(message)s",
+            "datefmt": "%a, %d %b %Y %H:%M:%S",
+         },
+         "simple": {
+            "format": "%(levelname)s %(message)s",
+            "datefmt": "%a, %d %b %Y %H:%M:%S",
+         },
+    },    
+    "handlers": {
+         "console":{
+            "level":"DEBUG",
+            "class":"logging.StreamHandler",
+            "formatter": "verbose",
+        },
+        'logfile': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'formatter': 'verbose',
+            'filename': '/Users/Kai/Temp/lfc.log',
+            'mode': 'a',
+        },            
+    },        
+    "loggers": {
+        "default": {
+            "handlers": ["logfile"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+    }
+}
+
 PAGINATION_DEFAULT_PAGINATION = 5
 PAGINATION_DEFAULT_WINDOW = 1
 
