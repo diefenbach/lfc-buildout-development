@@ -3,7 +3,7 @@
 import os
 DIRNAME = os.path.dirname(__file__)
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 RESOURCES_DEBUG = DEBUG
 
@@ -29,7 +29,7 @@ DATABASES = {
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Europe/Berlin'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -72,17 +72,14 @@ MIDDLEWARE_CLASSES = (
     "lfc.utils.middleware.LFCMiddleware",
     "lfc_developement_tools.middleware.AJAXSimpleExceptionResponse",
     "lfc_developement_tools.middleware.ProfileMiddleware",
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",
 )
 
 ROOT_URLCONF = 'urls'
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
-
 INSTALLED_APPS = (
+    # "devserver",
+    "debug_toolbar",
     "lfc_theme",
     "django.contrib.admin",
     'django.contrib.auth',
@@ -103,6 +100,7 @@ INSTALLED_APPS = (
     "permissions",
     "resources",
     "gunicorn",
+    "lfc_bench",
 )
 
 # For sql_queries
@@ -112,6 +110,7 @@ INTERNAL_IPS = (
 
 CACHE_MIDDLEWARE_KEY_PREFIX = "lfc"
 CACHE_BACKEND = 'dummy:///'
+CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
 
 FORCE_SCRIPT_NAME=""
 LOGIN_URL = '/login'
@@ -179,6 +178,17 @@ LFC_MANAGE_APPLICATIONS = True
 LFC_MANAGE_USERS = True
 LFC_MANAGE_SEO =  True
 LFC_MANAGE_COMMENTS =  True
+
+DEVSERVER_MODULES = (
+    'devserver.modules.sql.SQLRealTimeModule',
+    'devserver.modules.sql.SQLSummaryModule',
+    'devserver.modules.profile.ProfileSummaryModule',
+
+    # Modules not enabled by default
+    'devserver.modules.ajax.AjaxDumpModule',
+    # 'devserver.modules.profile.MemoryUseModule',
+    'devserver.modules.cache.CacheSummaryModule',
+)
 
 try:
     from local_settings import *
