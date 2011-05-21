@@ -101,6 +101,7 @@ INSTALLED_APPS = (
     "resources",
     "gunicorn",
     "lfc_bench",
+    "lfc_rss_tags",
 )
 
 # For sql_queries
@@ -178,6 +179,10 @@ LFC_MANAGE_APPLICATIONS = True
 LFC_MANAGE_USERS = True
 LFC_MANAGE_SEO =  True
 LFC_MANAGE_COMMENTS =  True
+LFC_TAGS = [
+    "lfc_tags",
+    "lfc_rss_tags",
+]
 
 DEVSERVER_MODULES = (
     'devserver.modules.sql.SQLRealTimeModule',
