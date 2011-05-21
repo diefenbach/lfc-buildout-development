@@ -21,6 +21,11 @@ urlpatterns = patterns('',
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': os.path.join(DIRNAME, "media"), 'show_indexes': True }),
 )
 
+# LFC RSS TAGS
+urlpatterns += patterns('',
+    (r'', include('lfc_rss_tags.urls')),
+)
+
 # LFC Blog
 urlpatterns += patterns("",
     (r'', include('lfc_blog.urls')),

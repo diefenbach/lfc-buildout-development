@@ -179,6 +179,10 @@ LFC_MANAGE_APPLICATIONS = True
 LFC_MANAGE_USERS = True
 LFC_MANAGE_SEO =  True
 LFC_MANAGE_COMMENTS =  True
+LFC_TAGS = [
+    "lfc_tags",
+    "lfc_rss_tags",
+]
 
 try:
     from local_settings import *
