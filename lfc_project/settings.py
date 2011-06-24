@@ -3,7 +3,7 @@
 import os
 DIRNAME = os.path.dirname(__file__)
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 RESOURCES_DEBUG = DEBUG
 
@@ -64,6 +64,7 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -96,6 +97,7 @@ INSTALLED_APPS = (
     "lfc",
     "lfc_blog",
     "lfc_contact_form",
+    "lfc_compositor",
     "portlets",
     "tagging",
     "pagination",
@@ -103,6 +105,8 @@ INSTALLED_APPS = (
     "permissions",
     "resources",
     "gunicorn",
+    "lfc_rss_tags",
+    "lfc_forms",
 )
 
 # For sql_queries
@@ -179,6 +183,11 @@ LFC_MANAGE_APPLICATIONS = True
 LFC_MANAGE_USERS = True
 LFC_MANAGE_SEO =  True
 LFC_MANAGE_COMMENTS =  True
+
+LFC_TAGS = [
+    "lfc_tags",
+    "lfc_rss_tags",
+]
 
 try:
     from local_settings import *
