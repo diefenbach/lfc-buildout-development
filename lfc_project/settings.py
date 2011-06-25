@@ -184,7 +184,6 @@ LFC_MANAGE_COMMENTS =  True
 
 LFC_TAGS = [
     "lfc_tags",
-    "lfc_rss_tags",
 ]
 
 try:

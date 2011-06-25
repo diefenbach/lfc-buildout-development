@@ -26,11 +26,6 @@ urlpatterns += patterns("",
     (r'', include('lfc_blog.urls')),
 )
 
-# LFC RSS Tags
-urlpatterns += patterns("",
-    (r'', include('lfc_rss_tags.urls')),
-)
-
 urlpatterns += patterns("",
     (r'compositor/', include('lfc_compositor.urls')),
 )
