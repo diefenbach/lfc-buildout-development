@@ -105,8 +105,6 @@ INSTALLED_APPS = (
     "permissions",
     "resources",
     "gunicorn",
-    "lfc_rss_tags",
-    "lfc_forms",
 )
 
 # For sql_queries
