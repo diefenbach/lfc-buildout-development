@@ -3,7 +3,7 @@ lfc.db*
 .installed.cfg
 *.pyc
 *.pyo
-*.DS_Store 
+*.DS_Store
 *develop-eggs/
 *.egg-info/
 *eggs/
@@ -18,3 +18,5 @@ server.pid
 .coverage
 *.DS_Store
 *build
+*sitestatic
+*.mr.developer.cfg
