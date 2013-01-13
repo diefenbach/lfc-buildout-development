@@ -5,7 +5,8 @@ DIRNAME = os.path.dirname(__file__)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-RESOURCES_DEBUG = DEBUG
+COMPRESS_ENABLED = False
+COMPRESS_CACHE_BACKEND = 'locmem:///'
 
 ADMINS = (
     # ('name', 'email'),
@@ -40,6 +41,10 @@ SITE_ID = 1
 # to load the internationalization machinery.
 USE_I18N = True
 
+# static files settings
+STATIC_URL = '/static/'
+STATIC_ROOT = DIRNAME + "/sitestatic"
+
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = DIRNAME + "/media"
@@ -73,6 +78,7 @@ MIDDLEWARE_CLASSES = (
     "lfc.utils.middleware.LFCMiddleware",
     "lfc_developement_tools.middleware.AJAXSimpleExceptionResponse",
     "lfc_developement_tools.middleware.ProfileMiddleware",
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -84,27 +90,33 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    "compressor",
     "lfc_theme",
     "django.contrib.admin",
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.staticfiles',
     "django.contrib.flatpages",
     "django.contrib.sitemaps",
     "django.contrib.comments",
     "django_extensions",
     "lfc",
+    "lfc_page",
     "lfc_blog",
+    "lfc_bench",
     "lfc_contact_form",
     "lfc_compositor",
+    "lfc_portlets",
     "portlets",
     "tagging",
     "pagination",
     "workflows",
     "permissions",
-    "resources",
     "gunicorn",
+    "lfc_rss_tags",
+    # "debug_toolbar",
 )
 
 # For sql_queries
@@ -125,6 +137,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
     'django.core.context_processors.media',
+    'django.core.context_processors.static',
     'django.core.context_processors.i18n',
     'lfc.context_processors.main',
 )
@@ -146,7 +159,7 @@ LOGGING = {
             "format": "%(levelname)s %(message)s",
             "datefmt": "%a, %d %b %Y %H:%M:%S",
          },
-    },    
+    },
     "handlers": {
          "console":{
             "level":"DEBUG",
@@ -159,8 +172,8 @@ LOGGING = {
             'formatter': 'verbose',
             'filename': '/Users/Kai/Temp/lfc.log',
             'mode': 'a',
-        },            
-    },        
+        },
+    },
     "loggers": {
         "default": {
             "handlers": ["logfile"],
@@ -179,8 +192,13 @@ LFC_MANAGE_WORKFLOWS =  True
 LFC_MANAGE_PERMISSIONS =  True
 LFC_MANAGE_APPLICATIONS = True
 LFC_MANAGE_USERS = True
+
+LFC_MANAGE_META_DATA = True
 LFC_MANAGE_SEO =  True
-LFC_MANAGE_COMMENTS =  True
+LFC_MANAGE_COMMENTS = True
+LFC_MANAGE_PORTLETS = True
+LFC_MANAGE_IMAGES = True
+LFC_MANAGE_FILES = True
 
 LFC_TAGS = [
     "lfc_tags",
