@@ -20,3 +20,4 @@ server.pid
 *build
 *sitestatic
 *.mr.developer.cfg
+*src
