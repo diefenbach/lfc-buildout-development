@@ -21,3 +21,4 @@ server.pid
 *sitestatic
 *.mr.developer.cfg
 *src
+lfc.log

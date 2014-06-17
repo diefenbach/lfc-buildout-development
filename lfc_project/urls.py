@@ -21,15 +21,6 @@ urlpatterns = patterns('',
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': True}),
 )
 
-# LFC Blog
-urlpatterns += patterns("",
-    (r'', include('lfc_blog.urls')),
-)
-
-urlpatterns += patterns("",
-    (r'compositor/', include('lfc_compositor.urls')),
-)
-
 # LFC
 urlpatterns += patterns('',
     (r'^manage', include('lfc.manage.urls')),
