@@ -66,8 +66,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     "pagination.middleware.PaginationMiddleware",
-    "lfc.utils.middleware.LFCMiddleware",
     'django.contrib.messages.middleware.MessageMiddleware',
+    "lfc.utils.middleware.LFCMiddleware",
 )
 
 ROOT_URLCONF = 'urls'
@@ -75,7 +75,6 @@ ROOT_URLCONF = 'urls'
 INSTALLED_APPS = (
     "compressor",
     "lfc_theme",
-    "debug_toolbar",
     "django.contrib.admin",
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -85,7 +84,6 @@ INSTALLED_APPS = (
     "django.contrib.flatpages",
     "django.contrib.sitemaps",
     "django.contrib.comments",
-    "django_extensions",
     "lfc",
     "lfc_contact_form",
     "lfc_page",
@@ -97,13 +95,12 @@ INSTALLED_APPS = (
     "workflows",
 )
 
-CACHE_MIDDLEWARE_KEY_PREFIX = "lfc"
-CACHE_BACKEND = 'dummy:///'
 
 FORCE_SCRIPT_NAME = ""
+
 LOGIN_URL = '/login'
 LOGOUT_URL = '/logout'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/manage/'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',
@@ -114,6 +111,14 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'lfc.context_processors.main',
 )
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+
+CACHE_MIDDLEWARE_KEY_PREFIX = 'lfc'
 
 EMAIL_HOST = ""
 EMAIL_HOST_USER = ""
@@ -148,7 +153,12 @@ LOGGING = {
     },
     "loggers": {
         "default": {
-            "handlers": ["logfile"],
+            "handlers": ["logfile", "console"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "qinspect": {
+            "handlers": ["console"],
             "level": "DEBUG",
             "propagate": False,
         },
