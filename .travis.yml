@@ -3,4 +3,4 @@ python: '2.7'
 install:
 - python bootstrap.py
 - ./bin/buildout -N -t 3 -c buildout_travis.cfg
-script: bin/django test lfc.tests
+script: bin/django test lfc.tests --settings=lfc_project.settings_travis
