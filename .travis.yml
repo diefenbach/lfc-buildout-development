@@ -1,0 +1,6 @@
+language: python
+python: '2.7'
+install:
+- python bootstrap.py
+- ./bin/buildout -N -t 3 -c buildout.cfg
+script: bin/django test lfc.tests
