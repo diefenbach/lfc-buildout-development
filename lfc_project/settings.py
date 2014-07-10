@@ -157,8 +157,8 @@ LOGGING = {
             "level": "DEBUG",
             "propagate": False,
         },
-        "qinspect": {
-            "handlers": ["console"],
+        "portlets": {
+            "handlers": ["logfile", "console"],
             "level": "DEBUG",
             "propagate": False,
         },
