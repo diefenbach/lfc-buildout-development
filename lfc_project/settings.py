@@ -83,7 +83,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     "django.contrib.flatpages",
     "django.contrib.sitemaps",
-    "django.contrib.comments",
+    "django_comments",
     "lfc",
     "lfc_contact_form",
     "lfc_page",
@@ -126,7 +126,7 @@ EMAIL_HOST_PASSWORD = ""
 
 LOGGING = {
     "version": 1,
-    "disable_existing_loggers": False,
+    "disable_existing_loggers": True,
     "formatters": {
         "verbose": {
             "format": "%(asctime)s %(levelname)s %(message)s",
@@ -152,7 +152,7 @@ LOGGING = {
         },
     },
     "loggers": {
-        "default": {
+        "lfc": {
             "handlers": ["logfile", "console"],
             "level": "DEBUG",
             "propagate": False,
